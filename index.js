@@ -1,3 +1,5 @@
+const container = document.querySelector(".game");
+const result = document.querySelector(".result");
 function getCompChoice() {
 
     let choice = Math.floor(Math.random() * 3) + 1
@@ -11,15 +13,13 @@ function getCompChoice() {
 }
 
 function playRound(pc, cc) {
+    let ans;
     if(pc == "rock" && cc == "rock") {
-        console.log("rock");
-        return;
+        ans = "rock";
+    }else if(pc == "paper" && cc == "paper") {
+       ans = "paper";
     }
-    if(pc == "paper" && cc == "paper") {
-        console.log("paper");
-        return;
-    }
-    if(pc == "scissor" && cc == "scissor") {
+    else if(pc == "scissor" && cc == "scissor") {
         console.log("scissor");
         return;
     }
@@ -39,11 +39,33 @@ function playRound(pc, cc) {
     else {
         console.log("default condition");
     }
-
+    result.textContent = ans;
+}
+const choosedPlay = (e) => {
+    return e.target.textContent;
 }
 
-for(let i = 0; i < 10; i++) {
-    let playerChoice = (prompt("Enter Your Play: ")).toLowerCase()
-let compChoice = getCompChoice()
-playRound(playerChoice, compChoice)
+//This is the actual game div
+let counter = 1;
+// buttons 
+// let playerChoice;
+const plays = [...document.querySelectorAll(".btn-pl")];
+plays.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+        playGame(e);
+        
+    })
+
+});
+// console.log(playerChoice);
+
+const playGame = (e) => {
+    if(counter < 5){
+        let playerChoice = choosedPlay(e).toLowerCase();
+        let compChoice = getCompChoice();
+        playRound(playerChoice, compChoice)
+        counter++;
+    }else {
+        result.textContent = "You Lose Or Won";
+    }
 }

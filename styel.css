@@ -1,0 +1,20 @@
+body{
+    background-color: #181D31;
+    color: #F0E9D2;
+}
+.game {
+    height: 600px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+.btn {
+    background-color: #439A97;
+    padding: 1rem;
+}
+.game {
+    /* background-color: pink; */
+    height: 600px;
+}
